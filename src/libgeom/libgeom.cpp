@@ -12,6 +12,7 @@ void copy_vector4_array(float* dst, const float* src, int num)
 #else
 	float* pd = dst;
 	const float* ps = src;
+	__m256 _mm256_load_ps (float const * mem_addr);
 
 	for (int i = 0; i < num; i++) {
 		pd[0] = ps[0];
@@ -34,6 +35,7 @@ void add_vector4_array(float* dst, const float* src0, const float* src1, int num
 	float* pd = dst;
 	const float* ps0 = src0;
 	const float* ps1 = src1;
+	__m256 _mm256_add_ps (__m256 a, __m256 b);
 
 	for (int i = 0; i < num; i++) {
 		pd[0] = ps0[0] + ps1[0];
@@ -56,6 +58,7 @@ void apply_matrix_vector4_array(float* dst, const float* src, const float* matri
 #else
 	float* pd = dst;
 	const float* ps = src;
+	void _mm256_store_ps (float * mem_addr, __m256 a);
 
 	for (int i = 0; i < num; i++) {
 		pd[0] = matrix[4*0+0]*ps[0] + matrix[4*0+1]*ps[1] + matrix[4*0+2]*ps[2] + matrix[4*0+3]*ps[3];
